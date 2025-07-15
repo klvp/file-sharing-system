@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+    background-color: white;
+}
+body{
+    /* background-color: greenyellow; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#uploadForm, .middle{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+}
+#uploadForm > button,
+.middle > button{
+    width: 50%;
+    margin: 20px;
+}
+.middle {
+    margin: 0 20px 0 0;
+}
+

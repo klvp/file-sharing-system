@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Secure File Share</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <section>
+        <h1 style="text-align: center;">Upload a File</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="file" required style="margin-left: 85px;"/>
+            <button type="submit">Upload</button>
+        </form>
+    </section>
+
+    <section class="middle">
+        <h2>Download File</h2>
+        <input type="text" id="filename" placeholder="Encrypted filename" />
+        <button onclick="downloadFile()">Download</button>
+    </section>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const res = await fetch('/files/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            alert(data.message + '\\nFile: ' + data.filename);
+        };
+
+        function downloadFile() {
+            const filename = document.getElementById('filename').value;
+            window.location.href = '/files/download/' + filename;
+        }
+    </script>
+</body>
+
+</html>
