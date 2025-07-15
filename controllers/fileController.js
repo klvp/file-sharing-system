@@ -9,7 +9,7 @@ const {
 
 exports.handleFileUpload = (req, res) => {
     try {
-        const tempPath = sanitize(req.file.path);
+        const tempPath = req.file.path;
         const encryptedPath = path.join('uploads', req.file.filename + '.enc');
 
         encryptFile(tempPath, encryptedPath, async () => {
@@ -30,7 +30,7 @@ exports.handleFileUpload = (req, res) => {
 
 exports.handleFileDownload = (req, res) => {
     try {
-        const encryptedPath = path.join('uploads', req.params.filename);
+        const encryptedPath = path.join('uploads', req.params.filename + '.enc');
         const decryptedPath = path.join('decrypted', req.params.filename.replace('.enc', ''));
 
         decryptFile(encryptedPath, decryptedPath, () => {
