@@ -16,7 +16,14 @@ Make sure to install node in your system by following correct OS method
 ```bash
   https://www.geeksforgeeks.org/node-js/node-js-introduction/
 ```
-    
+
+## Environment Variables
+To run this project, you will need to add the following environment variables to your .env file
+
+`PORT`: available port on which you want to run the server (5000)
+
+`ENCRYPTION_PASSWORD`: some secure key
+
 ## Run Locally
 
 Clone the project
