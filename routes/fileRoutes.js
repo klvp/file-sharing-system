@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const sanitize = require('sanitize-filename');
 const {
     handleFileUpload,
     handleFileDownload
@@ -11,19 +12,19 @@ const {
 const storage = multer.diskStorage({
     destination: 'temp/',
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        cb(null, sanitize(file.originalname));
     }
 });
 
 // File type filter
 function fileFilter(req, file, cb) {
-    const allowedTypes = ['.pdf', '.txt', '.png'];
+    const allowedTypes = ['.pdf', '.txt', '.png', '.jpg'];
     const ext = path.extname(file.originalname).toLowerCase();
 
     if (allowedTypes.includes(ext)) {
         cb(null, true);
     } else {
-        cb(new Error('Only PDF, TXT, and PNG files are allowed'), false);
+        cb(new Error('Only PDF, TXT, JPG and PNG files are allowed'), false);
     }
 }
 

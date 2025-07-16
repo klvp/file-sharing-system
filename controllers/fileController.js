@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const sanitize = require('sanitize-filename');
 const {
     encryptFile,
     decryptFile,
